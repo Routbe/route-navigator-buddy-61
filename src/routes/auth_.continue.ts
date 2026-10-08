@@ -49,22 +49,29 @@ export async function handlePostAuth(request: Request): Promise<Response> {
   const draftToken = readCookie(cookieHeader, TOUR_DRAFT_COOKIE);
   let next = safeNextPath(readCookie(cookieHeader, NEXT_COOKIE)) ?? null;
 
-  // A pending tour draft always wins: copy it to the account and finish onboarding.
+  // A pending tour draft is applied straight to a new account; existing members keep their profile.
   if (draftToken) {
+    let result: "applied" | "handle_taken" | "skipped" = "handle_taken";
     try {
-      const { readTourDraftByToken, upsertTourDraft, deleteTourDraftByToken } = await import(
-        "@/lib/tour-draft.server"
-      );
+      const { readTourDraftByToken, upsertTourDraft, deleteTourDraftByToken, deleteTourDraft } =
+        await import("@/lib/tour-draft.server");
+      const { applyTourDraftToUser } = await import("@/lib/tour-draft-apply.server");
       const token = decodeURIComponent(draftToken);
       const draft = await readTourDraftByToken(token);
-      if (draft && user.email) {
-        await upsertTourDraft(user.email.trim().toLowerCase(), draft);
+      const email = user.email?.trim().toLowerCase() ?? "";
+      if (draft) {
+        result = await applyTourDraftToUser(user.id, draft);
+        if (result === "handle_taken" && email) await upsertTourDraft(email, draft);
+        else if (email) await deleteTourDraft(email);
         await deleteTourDraftByToken(token);
+      } else {
+        result = "skipped";
       }
     } catch (err) {
-      console.error("[auth] post-auth draft copy failed", err);
+      console.error("[auth] post-auth draft apply failed", err);
     }
-    next = "/onboarding";
+    if (result === "handle_taken") next = "/onboarding";
+    else if (result === "applied") next = "/studio";
   }
 
   return seeOther(next ?? DEFAULT_DESTINATION, draftToken ? [clearNext, clearDraft] : [clearNext]);
