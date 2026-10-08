@@ -60,6 +60,7 @@ import { Route as AuthIndexRouteImport } from './routes/auth.index'
 import { Route as AuthAuthViewRouteImport } from './routes/auth.$authView'
 import { Route as AuthBlueskyRouteImport } from './routes/auth.bluesky'
 import { Route as AuthContinueRouteImport } from './routes/auth_.continue'
+import { Route as BrandSplatRouteImport } from './routes/brand.$'
 import { Route as DevEmailsRouteImport } from './routes/dev.emails'
 import { Route as FIdRouteImport } from './routes/f.$id'
 import { Route as GiftCodeRouteImport } from './routes/gift_.$code'
@@ -381,6 +382,11 @@ const AuthBlueskyRoute = AuthBlueskyRouteImport.update({
 const AuthContinueRoute = AuthContinueRouteImport.update({
   id: '/auth_/continue',
   path: '/auth/continue',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandSplatRoute = BrandSplatRouteImport.update({
+  id: '/brand/$',
+  path: '/brand/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DevEmailsRoute = DevEmailsRouteImport.update({
@@ -803,6 +809,7 @@ export interface FileRoutesByFullPath {
   '/auth/$authView': typeof AuthAuthViewRoute
   '/auth/bluesky': typeof AuthBlueskyRoute
   '/auth/continue': typeof AuthContinueRoute
+  '/brand/$': typeof BrandSplatRoute
   '/dev/emails': typeof DevEmailsRoute
   '/f/$id': typeof FIdRoute
   '/gift/$code': typeof GiftCodeRoute
@@ -920,6 +927,7 @@ export interface FileRoutesByTo {
   '/auth/$authView': typeof AuthAuthViewRoute
   '/auth/bluesky': typeof AuthBlueskyRoute
   '/auth/continue': typeof AuthContinueRoute
+  '/brand/$': typeof BrandSplatRoute
   '/dev/emails': typeof DevEmailsRoute
   '/f/$id': typeof FIdRoute
   '/gift/$code': typeof GiftCodeRoute
@@ -1039,6 +1047,7 @@ export interface FileRoutesById {
   '/auth/$authView': typeof AuthAuthViewRoute
   '/auth/bluesky': typeof AuthBlueskyRoute
   '/auth_/continue': typeof AuthContinueRoute
+  '/brand/$': typeof BrandSplatRoute
   '/dev/emails': typeof DevEmailsRoute
   '/f/$id': typeof FIdRoute
   '/gift_/$code': typeof GiftCodeRoute
@@ -1160,6 +1169,7 @@ export interface FileRouteTypes {
     | '/auth/$authView'
     | '/auth/bluesky'
     | '/auth/continue'
+    | '/brand/$'
     | '/dev/emails'
     | '/f/$id'
     | '/gift/$code'
@@ -1277,6 +1287,7 @@ export interface FileRouteTypes {
     | '/auth/$authView'
     | '/auth/bluesky'
     | '/auth/continue'
+    | '/brand/$'
     | '/dev/emails'
     | '/f/$id'
     | '/gift/$code'
@@ -1395,6 +1406,7 @@ export interface FileRouteTypes {
     | '/auth/$authView'
     | '/auth/bluesky'
     | '/auth_/continue'
+    | '/brand/$'
     | '/dev/emails'
     | '/f/$id'
     | '/gift_/$code'
@@ -1504,6 +1516,7 @@ export interface RootRouteChildren {
   AccountAccountViewRoute: typeof AccountAccountViewRoute
   ApiPaymentStatusRoute: typeof ApiPaymentStatusRoute
   AuthContinueRoute: typeof AuthContinueRoute
+  BrandSplatRoute: typeof BrandSplatRoute
   DevEmailsRoute: typeof DevEmailsRoute
   FIdRoute: typeof FIdRoute
   GiftCodeRoute: typeof GiftCodeRoute
@@ -1900,6 +1913,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/continue'
       fullPath: '/auth/continue'
       preLoaderRoute: typeof AuthContinueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brand/$': {
+      id: '/brand/$'
+      path: '/brand/$'
+      fullPath: '/brand/$'
+      preLoaderRoute: typeof BrandSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dev/emails': {
@@ -2609,6 +2629,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountAccountViewRoute: AccountAccountViewRoute,
   ApiPaymentStatusRoute: ApiPaymentStatusRoute,
   AuthContinueRoute: AuthContinueRoute,
+  BrandSplatRoute: BrandSplatRoute,
   DevEmailsRoute: DevEmailsRoute,
   FIdRoute: FIdRoute,
   GiftCodeRoute: GiftCodeRoute,

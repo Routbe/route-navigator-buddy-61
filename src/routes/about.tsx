@@ -1,3 +1,5 @@
+import { pageMeta } from "@/lib/page-cards";
+import { getRequestLocale } from "@/lib/locale.functions";
 import { createFileRoute } from "@tanstack/react-router";
 import Page from "@/pages/About";
 import { OG_IMAGE, canonicalLinks, jsonLdScript } from "@/lib/social-meta";
@@ -7,18 +9,9 @@ const DESCRIPTION =
   "Eén rustige pagina met je naam, links, verificatie en donaties. Schone URL's, SecureShield™ mailrelay, 0 % data-oogst en Europese infrastructuur.";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rout.be/about" },
-      { property: "og:image", content: `https://rout.be${OG_IMAGE}` },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: `https://rout.be${OG_IMAGE}` },
-    ],
+  loader: () => getRequestLocale().catch(() => ({ locale: "en" as const })),
+  head: ({ loaderData }) => ({
+    meta: pageMeta("about", loaderData?.locale),
     links: canonicalLinks("/about"),
     scripts: jsonLdScript({
       "@context": "https://schema.org",

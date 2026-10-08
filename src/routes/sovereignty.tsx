@@ -1,3 +1,5 @@
+import { pageMeta } from "@/lib/page-cards";
+import { getRequestLocale } from "@/lib/locale.functions";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { RouteErrorFallback, RoutePendingSkeleton } from "@/components/RouteFallbacks";
@@ -174,23 +176,9 @@ function SovereigntyPage() {
 }
 
 export const Route = createFileRoute("/sovereignty")({
-  head: () => ({
-    meta: [
-      { title: "Digitale soevereiniteit | ROUT" },
-      {
-        name: "description",
-        content:
-          "Waarom eigenaarschap van je links en data belangrijk is — en hoe ROUT dat regelt.",
-      },
-      { property: "og:title", content: "Digitale soevereiniteit | ROUT" },
-      {
-        property: "og:description",
-        content:
-          "Waarom eigenaarschap van je links en data belangrijk is — en hoe ROUT dat regelt.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  loader: () => getRequestLocale().catch(() => ({ locale: "en" as const })),
+  head: ({ loaderData }) => ({
+    meta: pageMeta("sovereignty", loaderData?.locale),
   }),
   component: SovereigntyPage,
 });

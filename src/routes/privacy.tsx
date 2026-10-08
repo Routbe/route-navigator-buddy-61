@@ -1,3 +1,5 @@
+import { pageMeta } from "@/lib/page-cards";
+import { getRequestLocale } from "@/lib/locale.functions";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { RouteErrorFallback, RoutePendingSkeleton } from "@/components/RouteFallbacks";
@@ -283,18 +285,9 @@ function PrivacyPage() {
 }
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacybeleid | ROUT" },
-      { name: "description", content: "Hoe ROUT met je gegevens, scans en analytics omgaat." },
-      { property: "og:title", content: "Privacybeleid | ROUT" },
-      {
-        property: "og:description",
-        content: "Hoe ROUT met je gegevens, scans en analytics omgaat.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
+  loader: () => getRequestLocale().catch(() => ({ locale: "en" as const })),
+  head: ({ loaderData }) => ({
+    meta: pageMeta("privacy", loaderData?.locale),
   }),
   component: PrivacyPage,
 });
