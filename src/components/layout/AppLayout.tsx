@@ -64,6 +64,9 @@ export function AppLayout({
           </Link>
 
           <div className="ml-auto flex items-center gap-2">
+            <Link to="/explore" className="hidden px-2 text-sm text-muted-foreground hover:text-foreground sm:inline">
+              Ontdek
+            </Link>
             <LanguageToggle className="hidden sm:inline-flex" />
             <ProfileMenu />
             <MobileMenu />
