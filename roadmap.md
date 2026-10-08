@@ -78,3 +78,10 @@
 - [x] /about als manifest, /explore bento-galerij, link in header en footer.
 - [x] Rondleidingkeuzes automatisch toegepast na inloggen (nieuwe accounts), tests.
 - [ ] Resterende sleutels (Stripe, Scaleway, extra inlogproviders) — wacht op jou.
+
+## Deel-afbeeldingen & merk (okt 2026)
+- [ ] Altijd het officiële konijn (exact), nooit AI-varianten; ringen alleen waar gekozen.
+- [ ] Meerdere afwisselende high-class deel-afbeeldingen per pagina.
+- [ ] Ontdek-pagina vertalen + zoeken/filters; vertaal-audit.
+- [ ] Perspagina verbeteren.
+- [ ] Profielkaart per gebruiker in hun kleuren/lettertype/avatar.
