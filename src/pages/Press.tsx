@@ -20,7 +20,7 @@ type Asset = {
 const ASSETS: Asset[] = [
   {
     name: "Logo met woordmerk",
-    note: "Konijn-icoon met kleurringen en ROUT ernaast. Voor lichte achtergronden.",
+    note: "Konijn-icoon met ROUT ernaast. Voor lichte achtergronden.",
     preview: "/press/rout-lockup.svg",
     surface: "light",
     files: [
@@ -40,7 +40,7 @@ const ASSETS: Asset[] = [
   },
   {
     name: "Icoon, transparant",
-    note: "Het originele konijn met paarse en groene ring.",
+    note: "Het konijn op een transparante achtergrond.",
     preview: "/press/rout-icon-transparent-512.png",
     surface: "checker",
     files: [
