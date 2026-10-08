@@ -73,3 +73,8 @@
 - [ ] Scaleway: 3 buckets (client/internal/default), profielfoto + tijdelijke QR-bestanden (expires_at) + opruimjob.
 - [ ] Console-UI: één linkerzijbalk, app-pagina's (Dashboard, Publishing, Security, Advanced), Quick Start, Manifesto, beheer voor badge-aanvragen.
 - [ ] Press kit-logo's laden niet + transparante favicon.
+
+## Manifesto, Explore, rondleiding (okt 2026)
+- [x] /about als manifest, /explore bento-galerij, link in header en footer.
+- [x] Rondleidingkeuzes automatisch toegepast na inloggen (nieuwe accounts), tests.
+- [ ] Resterende sleutels (Stripe, Scaleway, extra inlogproviders) — wacht op jou.
