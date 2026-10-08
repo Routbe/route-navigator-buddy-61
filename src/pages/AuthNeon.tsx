@@ -60,13 +60,6 @@ function GoogleColorMark({ className }: { className?: string }) {
  */
 const TILES: { id: string; label: string; provider: string; mark: string; color: string }[] = [
   {
-    id: "github",
-    label: "GitHub",
-    provider: "github",
-    mark: BRAND_ICONS.github!.path,
-    color: BRAND_ICONS.github!.color,
-  },
-  {
     id: "google",
     label: "Google",
     provider: "google",
@@ -81,33 +74,11 @@ const TILES: { id: string; label: string; provider: string; mark: string; color:
     color: BRAND_ICONS.mastodon!.color,
   },
   {
-    id: "keycloak",
-    label: "Keycloak / OIDC",
-    provider: "oidc",
-    mark: BRAND_ICONS.keycloak!.path,
-    color: BRAND_ICONS.keycloak!.color,
-  },
-  {
-    id: "gitlab",
-    label: "GitLab",
-    provider: "gitlab",
-    mark: BRAND_ICONS.gitlab!.path,
-    color: BRAND_ICONS.gitlab!.color,
-  },
-  {
     id: "bluesky",
     label: "Bluesky",
     provider: "bluesky",
     mark: BRAND_ICONS.bluesky!.path,
     color: BRAND_ICONS.bluesky!.color,
-  },
-  {
-    id: "infomaniak",
-    label: "Infomaniak",
-    provider: "infomaniak",
-    // Wordt gerenderd door <InfomaniakMark /> (witte k op blauw).
-    mark: "",
-    color: "#0098FF",
   },
 ];
 
