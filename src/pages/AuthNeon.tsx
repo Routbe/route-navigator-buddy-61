@@ -515,9 +515,6 @@ export default function AuthNeon({ initialMode = "magic" }: { initialMode?: Mode
           )}
 
 
-          <p className="mt-1.5 flex items-center gap-1 text-[11px] text-muted-foreground">
-            <ShieldCheck className="h-3 w-3 shrink-0" aria-hidden /> {t("auth.sso.note")}
-          </p>
 
           <div className="my-4 flex items-center gap-3">
             <div className="h-px flex-1 bg-border" />
